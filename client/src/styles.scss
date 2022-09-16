@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~normalize.css';
+// @import "tailwindcss/base";
+// @import "tailwindcss/components";
+// @import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  height: 100%;
+  --primary-color: hsl(296 83% 25%);
+  --secondary-color: hsl(200, 100%, 37%);
+  background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+}
+
+body {
+  height: 1px;
+  min-height: 100%;
+}
+
+// .zw-shadow {
+//   box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+// }
+
+// body {
+//   --primary-color: hsl(296 83% 25%);
+//   --secondary-color: hsl(200, 100%, 37%);
+//   background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+// }
+
+// body > svg {
+//   position: absolute;
+//   z-index: -1;
+//   bottom: 0;
+//   fill: var(--secondary-color);
+//   width: 100%;
+//   height: auto;
+// }
