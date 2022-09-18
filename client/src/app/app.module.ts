@@ -10,6 +10,10 @@ import { NotificationComponent } from './common/notification/notification.compon
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { ToptenChoosetextComponent } from './topten/topten-choosetext/topten-choosetext.component';
 import { ToptenOrderhintsComponent } from './topten/topten-orderhints/topten-orderhints.component';
+import { ToptenLobbyComponent } from './topten/topten-lobby/topten-lobby.component';
+import { ToptenGiveanswerComponent } from './topten/topten-giveanswer/topten-giveanswer.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToptenCardComponent } from './topten/topten-card/topten-card.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +25,15 @@ import { ToptenOrderhintsComponent } from './topten/topten-orderhints/topten-ord
     NotificationComponent,
     SpinnerComponent,
     ToptenChoosetextComponent,
-    ToptenOrderhintsComponent
+    ToptenOrderhintsComponent,
+    ToptenLobbyComponent,
+    ToptenGiveanswerComponent,
+    ToptenCardComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

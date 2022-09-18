@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TopTenService } from '../topten.service';
 
 @Component({
   selector: 'zg-topten-choosetext',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToptenChoosetextComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: TopTenService) { }
 
   ngOnInit(): void {
   }

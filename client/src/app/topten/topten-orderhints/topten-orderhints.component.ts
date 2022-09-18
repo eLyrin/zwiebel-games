@@ -18,9 +18,9 @@ export class ToptenOrderhintsComponent implements OnInit {
     return this.service.game;
   }
 
-  public get hints(): Hint[] {
+  public get hints(): [string, Hint][] {
     if (this.service.game.hints) {
-      return Array.from(this.service.game.hints.values());
+      return Array.from(this.service.game.hints);
     } else {
       return [];
     }

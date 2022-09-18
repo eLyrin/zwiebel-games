@@ -1,0 +1,20 @@
+<div class="card bg-primary rounded p-4 w-[44rem] gap-4">
+  <zg-notification>
+    <span class="grow">Warte auf Mitspieler (mindestens 4 und maximal 9)</span>
+    <zg-spinner></zg-spinner>
+  </zg-notification>
+  
+  <table class="table table-zebra">
+    <thead>
+      <th>Name</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of service.game.players | keyvalue" [ngClass]="{'cursor-pointer hover': service.game.isCaptain}">
+        <td class="whitespace-normal text-ellipsis overflow-hidden">{{player.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-secondary" [disabled]="service.game.players!.size < 4" (click)="service.startGame()">Starte</button>
+
+</div>

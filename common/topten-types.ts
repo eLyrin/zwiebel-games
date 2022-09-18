@@ -10,10 +10,12 @@ export interface GameState {
   round?: number;
   unicorns?: number;
   players?: Map<string, string>;
-  captainId?: string;
   step?: Step;
+  captainId?: string;
   card1?: string;
   card2?: string;
+  chosenCard?: 1 | 2;
+  secretNumber?: number;
   hints?: Map<string, Hint>;
   orderedHints?: OrderedHint[];
 }

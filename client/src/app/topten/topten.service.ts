@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { UserService } from "../services/user.service";
-import { GameState, Hint } from "@common/topten-types";
+import { GameState, Hint, Step } from "@common/topten-types";
 
 export interface GameStateVm extends GameState {
-  isCaptain?: boolean;
+  isCaptain: boolean;
 }
 
 @Injectable()
@@ -13,7 +13,8 @@ export class TopTenService {
     round: 1,
     unicorns: 8,
     step: "orderhints",
-    isCaptain: false,
+    isCaptain: true,
+    secretNumber: 7,
     players: new Map<string, string>([
       ["a", "Manfred"],
       ["b", "Bettina"],
@@ -21,13 +22,16 @@ export class TopTenService {
     ]),
     hints: new Map<string, Hint>([
       ["a", {playerId: "a", text: "Ich rette die Welt"}],
-      ["b", {playerId: "b", text: "Ldmaskd dkasmdakm"}],
+      ["b", {playerId: "b", text: "Ldmaskd dkasmdakm dnajsd dkasmdkamd dmaksdmkamd dkasmdkasmdka  dksamdksamdksam dksamdksamdkasmdam"}],
       ["c", {playerId: "c", text: "Mit einer Gummiente"}]
     ]),
     orderedHints: [
       {hintId: "b", secretNumber: 3, isCorrect: true},
       {hintId: "c", secretNumber: 5, isCorrect: false}
-    ]
+    ],
+    card1: "Karte 1 kdamskdma dkamskdmaskmdaskmda Aufgabe daskmdkam dkasmdkasmd dkamsdksamdkm dkasmdksamdka dkasmdkamda dkasmdkasmd",
+    card2: "zwei kdmaks einde ende",
+    chosenCard: 1
   };
 
 
@@ -44,14 +48,29 @@ export class TopTenService {
   }
 
   public foo() {
-    const bla = Array.from(this.game.hints!.values());
-    for (const key in this.game.hints) {
-
-    }
     console.log("foooooo");
-    this.game.isCaptain = !this.game.isCaptain;
-    // this.user.socket.emit("foo", "hariboooo");
-    // this.user.login();
-    // this.step$.next("choosetext");
+    const steps: Step[] = ["lobby", "choosecaptain", "choosetext", "givehints", "orderhints"];
+    const currentIdx = steps.findIndex(x => x === this.game.step);
+    this.game.step = currentIdx === steps.length - 1 ? steps[0] : steps[currentIdx + 1];
+
+    // this.game.players!.set("d", "Neuer Spieler Ilse");
+    // this.game.isCaptain = !this.game.isCaptain;
+  }
+
+  public chooseHint(id: string) {
+    this.user.socket.emit("chooseText", id);
+  }
+
+  public startGame() {
+    console.log("starting game..");
+  }
+
+  public becomeCaptain() {
+    console.log("I want to be the captain");
+  }
+
+  public giveAnswer(answer: any) {
+    console.dir(answer);
+    // console.log("answer: ", answer);
   }
 }

@@ -1,0 +1,18 @@
+<div class="card bg-primary rounded p-4 gap-4 max-w-[44rem] mb-8">
+  <zg-notification>Die aktuelle Aufgabe</zg-notification>
+  <span class="bg-white rounded p-4">{{service.game.chosenCard === 1 ? service.game.card1 : service.game.card2}}</span>
+</div>
+
+<div class="card bg-primary rounded p-4 gap-4 max-w-[44rem]">
+  <zg-notification>
+    <div>
+      Gib deine Antwort entsprechend deiner Geheimzahl zwischen&nbsp;
+      <span class="badge bg-green-400 text-green-900 font-bold border-none">1</span>
+      &nbsp;und <span class="badge bg-red-400 text-red-900 font-bold border-none">10</span>&nbsp;ein.
+      <br>
+      Deine Geheimzahl lautet: <span class="badge font-bold">{{service.game.secretNumber}}</span>
+    </div>
+  </zg-notification>
+  <input type="text" maxlength="80" class="input" [formControl]="answer">
+  <button class="btn btn-secondary" [disabled]="!answer.valid" (click)="service.giveAnswer(answer.value)">Okay!</button>
+</div>
