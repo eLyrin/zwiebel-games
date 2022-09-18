@@ -1,0 +1,30 @@
+<div class="flex justify-center mb-8" (click)="service.foo()">
+  <div class="card rounded shadow-2xl">
+    <div class="flex">
+      
+      <div class="failures bg-light p-4 min-w-[14rem] mb-[-6px] flex items-center">
+        <img src="assets/ttpoop.png" class="w-28">
+        <div class="bg-green-400 border-4 border-green-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
+          <span class="font-bold text-3xl text-green-900">{{ game.unicorns }}</span>
+        </div>
+      </div>
+  
+      <div class="failures bg-dark p-4 min-w-[14rem] mb-[-6px] flex items-center">
+        <img src="assets/ttpoop.png" class="w-28">
+        <div class="bg-red-400 border-4 border-red-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
+          <span class="font-bold text-3xl text-red-900">{{ 8 - game.unicorns! }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-container [ngSwitch]="game.step">
+  <ng-container *ngSwitchCase="'choosetext'">
+    <zg-topten-choosetext></zg-topten-choosetext>
+  </ng-container>
+  <ng-container *ngSwitchCase="'orderhints'">
+    <zg-topten-orderhints></zg-topten-orderhints>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  --topten-light: #077989;
+  --topten-dark: #055b66;
+  --p: 187 90.3% 28.2%;
+
+  .bg-light {
+    background-color: var(--topten-light);
+  }
+
+  .bg-dark {
+    background-color: var(--topten-dark);
+  }
+}

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { io, Socket } from "socket.io-client";
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,12 @@ import { BehaviorSubject, firstValueFrom } from 'rxjs';
 export class UserService {
 
   private _authorized$ = new BehaviorSubject(false);
-  public authorized$ = this._authorized$.asObservable();
+  public readonly authorized$ = this._authorized$.asObservable();
+  public readonly socket: Socket;
 
   constructor(private http: HttpClient) {
+    this.socket = io("http://localhost:3001/", {transports: ["websocket"]});
+    console.log("initSocket: ", this.socket);
   }
 
   public login() {
