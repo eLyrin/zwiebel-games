@@ -14,6 +14,7 @@ import { ToptenLobbyComponent } from './topten/topten-lobby/topten-lobby.compone
 import { ToptenGiveanswerComponent } from './topten/topten-giveanswer/topten-giveanswer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToptenCardComponent } from './topten/topten-card/topten-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ToptenCardComponent } from './topten/topten-card/topten-card.component'
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule
   ],

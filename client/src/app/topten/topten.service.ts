@@ -12,17 +12,19 @@ export class TopTenService {
   public game: GameStateVm = {
     round: 1,
     unicorns: 8,
-    step: "orderhints",
+    step: "lobby",
+    captainId: "b",
     isCaptain: true,
     secretNumber: 7,
     players: new Map<string, string>([
       ["a", "Manfred"],
       ["b", "Bettina"],
-      ["c", "Hugo"]
+      ["c", "Hugo"],
+      ["d", "Ulla"]
     ]),
     hints: new Map<string, Hint>([
       ["a", {playerId: "a", text: "Ich rette die Welt"}],
-      ["b", {playerId: "b", text: "Ldmaskd dkasmdakm dnajsd dkasmdkamd dmaksdmkamd dkasmdkasmdka  dksamdksamdksam dksamdksamdkasmdam"}],
+      ["b", {playerId: "b", text: "Ldmaskd dkasmdakm"}],
       ["c", {playerId: "c", text: "Mit einer Gummiente"}]
     ]),
     orderedHints: [
@@ -37,18 +39,19 @@ export class TopTenService {
 
   constructor(private user: UserService) {
 
-    user.socket.on("connect", () => {
-      console.log("angular connected");
-    });
+    // user.socket.on("connect", () => {
+    //   console.log("angular connected");
+    // });
 
-    user.socket.on("topten", (arg: GameState) => {
-      console.log("topten: ", arg);
-      this.game = {...this.game, ...arg};
-    });
+    // user.socket.on("topten", (arg: GameState) => {
+    //   console.log("topten: ", arg);
+    //   this.game = {...this.game, ...arg};
+    // });
   }
 
   public foo() {
     console.log("foooooo");
+    // this.game.step = this.game.step === "lobby" ? "orderhints" : "lobby";
     const steps: Step[] = ["lobby", "choosecaptain", "choosetext", "givehints", "orderhints"];
     const currentIdx = steps.findIndex(x => x === this.game.step);
     this.game.step = currentIdx === steps.length - 1 ? steps[0] : steps[currentIdx + 1];
@@ -58,7 +61,7 @@ export class TopTenService {
   }
 
   public chooseHint(id: string) {
-    this.user.socket.emit("chooseText", id);
+    // this.user.socket.emit("chooseText", id);
   }
 
   public startGame() {

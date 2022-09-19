@@ -1,33 +1,45 @@
-<div class="flex justify-center mb-8" (click)="service.foo()">
-  <div class="card rounded shadow-2xl flex-row">
-    <div class="failures bg-light p-4 min-w-[14rem] mb-[-6px] flex items-center">
-      <img src="assets/ttpoop.png" class="w-28">
-      <div class="bg-green-400 border-4 border-green-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
-        <span class="font-bold text-3xl text-green-900">{{ game.unicorns }}</span>
+<div class="flex justify-center mb-4" (click)="service.foo()">
+  <div class="card p-4 bg-primary shadow-2xl border-4">
+    
+    <div class="flex flex-row gap-4">
+      <div class="dmb-[-6px] flex items-center">
+        <img src="assets/ttpoop.png" class="w-28">
+        <div class="bg-green-400 border-4 border-green-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
+          <span class="font-bold text-3xl text-green-900">{{ game.unicorns }}</span>
+        </div>
+      </div>
+  
+      <div class="dmb-[-6px] flex items-center">
+        <img src="assets/ttpoop.png" class="w-28">
+        <div class="bg-red-400 border-4 border-red-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
+          <span class="font-bold text-3xl text-red-900">{{ 8 - game.unicorns! }}</span>
+        </div>
       </div>
     </div>
 
-    <div class="failures bg-dark p-4 min-w-[14rem] mb-[-6px] flex items-center">
-      <img src="assets/ttpoop.png" class="w-28">
-      <div class="bg-red-400 border-4 border-red-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
-        <span class="font-bold text-3xl text-red-900">{{ 8 - game.unicorns! }}</span>
+    <div class="text-white">
+      <div class="inline-block">
+        Captain: &nbsp;<span class="badge" *ngIf="!!game.captainId">{{game.players?.get(game.captainId)}}</span>
       </div>
+      <div class="inline-block float-right">Runde: &nbsp;<span class="badge">{{game.round}}/5</span></div>
     </div>
+
   </div>
 </div>
 
-<ng-container [ngSwitch]="game.step">
-  <div class="flex justify-center">
-    <zg-topten-lobby *ngSwitchCase="'lobby'"></zg-topten-lobby>
+<div class="flex justify-center" [ngSwitch]="game.step">
+  <zg-topten-lobby *ngSwitchCase="'lobby'" @inOut></zg-topten-lobby>
 
-    <zg-topten-card *ngSwitchCase="'choosecaptain'">
+  <div class="flex justify-center" *ngSwitchCase="'choosecaptain'" @inOut>
+    <zg-topten-card>
       <zg-notification>Wer will Captain für diese Runde sein?</zg-notification>
       <button class="btn btn-secondary" (click)="service.becomeCaptain()">Ich will!</button>
     </zg-topten-card>
-
-    <zg-topten-choosetext *ngSwitchCase="'choosetext'"></zg-topten-choosetext>
-    <zg-topten-giveanswer *ngSwitchCase="'givehints'"></zg-topten-giveanswer>
-
-    <zg-topten-orderhints *ngSwitchCase="'orderhints'"></zg-topten-orderhints>
   </div>
-</ng-container>
+
+  <zg-topten-choosetext *ngSwitchCase="'choosetext'" @inOut></zg-topten-choosetext>
+
+  <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut></zg-topten-giveanswer>
+
+  <zg-topten-orderhints *ngSwitchCase="'orderhints'" @inOut></zg-topten-orderhints>
+</div>

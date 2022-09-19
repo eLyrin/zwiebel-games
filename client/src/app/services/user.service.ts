@@ -10,11 +10,11 @@ export class UserService {
 
   private _authorized$ = new BehaviorSubject(false);
   public readonly authorized$ = this._authorized$.asObservable();
-  public readonly socket: Socket;
+  // public readonly socket: Socket;
 
   constructor(private http: HttpClient) {
-    this.socket = io("http://localhost:3001/", {transports: ["websocket"]});
-    console.log("initSocket: ", this.socket);
+    // this.socket = io("http://localhost:3001/", {transports: ["websocket"]});
+    // console.log("initSocket: ", this.socket);
   }
 
   public login() {

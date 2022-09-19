@@ -1,9 +1,9 @@
-<div class="card bg-primary rounded p-4 gap-4 max-w-[44rem] mb-8">
+<zg-topten-card class="max-w-[44rem] mb-4">
   <zg-notification>Die aktuelle Aufgabe</zg-notification>
   <span class="bg-white rounded p-4">{{service.game.chosenCard === 1 ? service.game.card1 : service.game.card2}}</span>
-</div>
+</zg-topten-card>
 
-<div class="card bg-primary rounded p-4 gap-4 max-w-[44rem]">
+<zg-topten-card class="max-w-[44rem]">
   <zg-notification>
     <div>
       Gib deine Antwort entsprechend deiner Geheimzahl zwischen&nbsp;
@@ -15,4 +15,4 @@
   </zg-notification>
   <input type="text" maxlength="80" class="input" [formControl]="answer">
   <button class="btn btn-secondary" [disabled]="!answer.valid" (click)="service.giveAnswer(answer.value)">Okay!</button>
-</div>
+</zg-topten-card>

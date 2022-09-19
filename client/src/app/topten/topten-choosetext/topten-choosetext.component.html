@@ -1,24 +1,22 @@
-<div class="flex justify-center">
-  <zg-topten-card class="min-w-[26rem] max-w-[44rem]">
-    
-    <ng-container *ngIf="service.game.isCaptain">
-      <zg-notification>Wähle einen Text</zg-notification>
-        
-      <div class="bg-base-100 rounded p-2 cursor-pointer hover:bg-base-300">
-        djansjdna dkasmdkamskd dkasmdkasm dkmaskdma dkamdksamdk dkamskdmaskdma dkmaskdmaskdmsa dsdskmdaskmd
-      </div>
+<zg-topten-card class="min-w-[26rem] max-w-[44rem]">
+  
+  <ng-container *ngIf="service.game.isCaptain">
+    <zg-notification>Wähle eine Aufgabe</zg-notification>
       
-      <div class="bg-base-100 rounded p-2 cursor-pointer hover:bg-base-300">
-        dkmaskdma dkamskdmakm daskm
-      </div>
-    </ng-container>
+    <div class="bg-base-100 rounded p-2 cursor-pointer hover:bg-base-300">
+      djansjdna dkasmdkamskd dkasmdkasm dkmaskdma dkamdksamdk dkamskdmaskdma dkmaskdmaskdmsa dsdskmdaskmd
+    </div>
+    
+    <div class="bg-base-100 rounded p-2 cursor-pointer hover:bg-base-300">
+      dkmaskdma dkamskdmakm daskm
+    </div>
+  </ng-container>
 
-    <ng-container *ngIf="!service.game.isCaptain">
-      <zg-notification>
-        <span class="grow">Der Captain wählt einen Text</span>
-        <zg-spinner></zg-spinner>
-      </zg-notification>
-    </ng-container>
+  <ng-container *ngIf="!service.game.isCaptain">
+    <zg-notification>
+      <span class="grow">Der Captain wählt einen Text</span>
+      <zg-spinner></zg-spinner>
+    </zg-notification>
+  </ng-container>
 
-  </zg-topten-card>>
-</div>
+</zg-topten-card>>

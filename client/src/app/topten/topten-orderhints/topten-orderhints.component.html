@@ -1,55 +1,59 @@
-<zg-topten-card class="max-w-[44rem] mb-8">
+<zg-topten-card class="max-w-[44rem] mx-auto mb-4">
   <zg-notification>Die aktuelle Aufgabe</zg-notification>
   <span class="bg-white rounded p-4">{{service.game.chosenCard === 1 ? service.game.card1 : service.game.card2}}</span>
 </zg-topten-card>
 
-<zg-topten-card class="max-w-[44rem] mb-8">
-  <zg-notification>
-    <ng-container *ngIf="service.game.isCaptain">
-      Bringe die Hinweise in die richtige Reihenfolge. Beginnend mit
-      <span class="font-bold p-1 rounded-lg bg-green-400 text-green-900">grün</span>
-      bishin zu
-      <span class="font-bold p-1 rounded-lg bg-red-400 text-red-900">rot</span>
-    </ng-container>
-    <ng-container *ngIf="!service.game.isCaptain">
-      <span class="grow">Der Captain bringt die Hinweise in die richtige Reihenfolge</span>
-      <zg-spinner></zg-spinner>
-    </ng-container>
-  </zg-notification>
+<div class="flex flex-col lg:flex-row gap-4">
 
-  <table class="table">
-    <thead>
-      <th>Hinweis</th>
-      <th>Von</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let hint of hints" [ngClass]="{'cursor-pointer hover': service.game.isCaptain}" (click)="service.chooseHint(hint[0])">
-        <td class="whitespace-normal">{{hint[1].text}}</td>
-        <td class="whitespace-normal text-ellipsis overflow-hidden max-w-[12rem]">{{game.players?.get(hint[1].playerId)}}</td>
-      </tr>
-    </tbody>
-  </table>
-</zg-topten-card>
-
-<zg-topten-card class="max-w-[44rem]">
-  <zg-notification>Angeordnete Hinweise</zg-notification>
-  <table class="table">
-    <thead>
-      <th>Hinweis</th>
-      <th>Von</th>
-      <th>Geheimzahl</th>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let orderedHint of game.orderedHints">
-        <tr *ngIf="game.hints?.get(orderedHint.hintId) as hint">
-          <td class="whitespace-normal">{{hint.text}}</td>
-          <td class="whitespace-normal text-ellipsis overflow-hidden max-w-[10rem]">{{game.players?.get(hint.playerId)}}</td>
-          <td class="text-center font-bold text-3xl"
-            [ngClass]="{'bg-green-400 text-green-900': orderedHint.isCorrect, 'bg-red-400 text-red-900': !orderedHint.isCorrect}">
-            {{orderedHint.secretNumber}}
-          </td>
-        </tr>
+  <zg-topten-card class="min-w-[34rem]">
+    <zg-notification>
+      <div *ngIf="service.game.isCaptain">
+        Bringe die Hinweise in die richtige Reihenfolge. Beginnend mit
+        <span class="font-bold p-1 rounded-lg bg-green-400 text-green-900">grün</span>
+        bishin zu
+        <span class="font-bold p-1 rounded-lg bg-red-400 text-red-900">rot</span>
+      </div>
+      <ng-container *ngIf="!service.game.isCaptain">
+        <span class="grow">Der Captain bringt die Hinweise in die richtige Reihenfolge</span>
+        <zg-spinner></zg-spinner>
       </ng-container>
-    </tbody>
-  </table>
-</zg-topten-card>
+    </zg-notification>
+
+    <table class="table">
+      <thead>
+        <th>Hinweis</th>
+        <th>Von</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hint of hints" [ngClass]="{'cursor-pointer hover': service.game.isCaptain}" (click)="service.chooseHint(hint[0])">
+          <td class="whitespace-normal">{{hint[1].text}}</td>
+          <td class="whitespace-normal text-ellipsis overflow-hidden max-w-[12rem]">{{game.players?.get(hint[1].playerId)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </zg-topten-card>
+
+  <zg-topten-card class="min-w-[34rem]">
+    <zg-notification>Angeordnete Hinweise</zg-notification>
+    <table class="table">
+      <thead>
+        <th>Hinweis</th>
+        <th>Von</th>
+        <th>Geheimzahl</th>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let orderedHint of game.orderedHints">
+          <tr *ngIf="game.hints?.get(orderedHint.hintId) as hint">
+            <td class="whitespace-normal">{{hint.text}}</td>
+            <td class="whitespace-normal text-ellipsis overflow-hidden max-w-[10rem]">{{game.players?.get(hint.playerId)}}</td>
+            <td class="text-center font-bold text-3xl"
+              [ngClass]="{'bg-green-400 text-green-900': orderedHint.isCorrect, 'bg-red-400 text-red-900': !orderedHint.isCorrect}">
+              {{orderedHint.secretNumber}}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </zg-topten-card>
+
+</div>
