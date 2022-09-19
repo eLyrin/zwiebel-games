@@ -19,14 +19,12 @@ import { TopTenService } from './topten.service';
       ]),
       transition(":leave", [
         style({opacity: 1, position: "absolute"}),
-        animate("0.3s 0s ease-out", style({opacity: 0, position: "absolute"}))
+        animate("0.3s 0s ease-out", style({opacity: 0}))
       ])
     ])
   ]
 })
 export class ToptenComponent implements OnInit {
-
-  show = true;
 
   constructor(public service: TopTenService) { }
 
@@ -36,10 +34,4 @@ export class ToptenComponent implements OnInit {
   public get game(): GameState {
     return this.service.game;
   }
-
-  toggle() {
-    this.show = !this.show;
-  }
-
-
 }

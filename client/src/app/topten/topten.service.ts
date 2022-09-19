@@ -12,7 +12,7 @@ export class TopTenService {
   public game: GameStateVm = {
     round: 1,
     unicorns: 8,
-    step: "lobby",
+    step: "orderhints",
     captainId: "b",
     isCaptain: true,
     secretNumber: 7,

@@ -1,0 +1,23 @@
+<div class="card p-4 bg-primary shadow-2xl border-4">
+  <div class="flex flex-row gap-4">
+    <div class="dmb-[-6px] flex items-center">
+      <img src="assets/ttpoop.png" class="w-28">
+      <div class="bg-green-400 border-4 border-green-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
+        <span class="font-bold text-3xl text-green-900">{{ game.unicorns }}</span>
+      </div>
+    </div>
+
+    <div class="dmb-[-6px] flex items-center">
+      <img src="assets/ttpoop.png" class="w-28">
+      <div class="bg-red-400 border-4 border-red-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
+        <span class="font-bold text-3xl text-red-900">{{ 8 - game.unicorns! }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-white">
+    <div class="inline-block">
+      Captain: &nbsp;<span class="badge" *ngIf="!!game.captainId">{{game.players?.get(game.captainId)}}</span>
+    </div>
+    <div class="inline-block float-right">Runde: &nbsp;<span class="badge">{{game.round}}/5</span></div>
+  </div>
+</div>

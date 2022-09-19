@@ -1,30 +1,19 @@
-<div class="flex justify-center mb-4" (click)="service.foo()">
-  <div class="card p-4 bg-primary shadow-2xl border-4">
-    
-    <div class="flex flex-row gap-4">
-      <div class="dmb-[-6px] flex items-center">
-        <img src="assets/ttpoop.png" class="w-28">
-        <div class="bg-green-400 border-4 border-green-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
-          <span class="font-bold text-3xl text-green-900">{{ game.unicorns }}</span>
-        </div>
-      </div>
-  
-      <div class="dmb-[-6px] flex items-center">
-        <img src="assets/ttpoop.png" class="w-28">
-        <div class="bg-red-400 border-4 border-red-900 rounded-full w-16 h-16 flex items-center justify-center ml-2">
-          <span class="font-bold text-3xl text-red-900">{{ 8 - game.unicorns! }}</span>
-        </div>
-      </div>
-    </div>
+<button class="btn" style="position: absolute; top: 0; left: 0;" (click)="service.foo()">Foo</button>
 
-    <div class="text-white">
-      <div class="inline-block">
-        Captain: &nbsp;<span class="badge" *ngIf="!!game.captainId">{{game.players?.get(game.captainId)}}</span>
-      </div>
-      <div class="inline-block float-right">Runde: &nbsp;<span class="badge">{{game.round}}/5</span></div>
-    </div>
+<div class="flex justify-center mb-4">
 
+  <div class="flex flex-col lg:flex-row items-center gap-4" *ngIf="game.step === 'orderhints'; else restSteps" @inOut>
+    <zg-topten-stats class="min-w-fit"></zg-topten-stats>
+    <zg-topten-card class="max-w-[44rem]">
+      <zg-notification>Die aktuelle Aufgabe</zg-notification>
+      <span class="bg-white rounded p-4">{{service.game.chosenCard === 1 ? service.game.card1 : service.game.card2}}</span>
+    </zg-topten-card>
   </div>
+
+  <ng-template #restSteps>
+    <zg-topten-stats @inOut></zg-topten-stats>
+  </ng-template>
+  
 </div>
 
 <div class="flex justify-center" [ngSwitch]="game.step">
