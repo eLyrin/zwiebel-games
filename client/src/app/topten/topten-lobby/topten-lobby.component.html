@@ -15,6 +15,6 @@
     </tbody>
   </table>
 
-  <button class="btn btn-secondary" [disabled]="service.game.players!.size < 4" (click)="service.startGame()">Start!</button>
+  <button class="btn btn-secondary" [disabled]="!service.game.players || (service.game.players | keyvalue).length < 4" (click)="service.startGame()">Start!</button>
 
 </zg-topten-card>

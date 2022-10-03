@@ -1,6 +1,6 @@
 <zg-topten-card class="min-w-[26rem] max-w-[44rem]">
   
-  <ng-container *ngIf="service.game.isCaptain">
+  <ng-container *ngIf="service.isCaptain">
     <zg-notification>Wähle eine Aufgabe</zg-notification>
       
     <div class="bg-base-100 rounded p-2 cursor-pointer hover:bg-base-300">
@@ -12,7 +12,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!service.game.isCaptain">
+  <ng-container *ngIf="!service.isCaptain">
     <zg-notification>
       <span class="grow">Der Captain wählt einen Text</span>
       <zg-spinner></zg-spinner>

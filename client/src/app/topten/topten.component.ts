@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { GameState } from '@common/topten-types';
+import { GameState } from "@common/topten-types"
 import { TopTenService } from './topten.service';
 
 @Component({
@@ -15,12 +15,13 @@ import { TopTenService } from './topten.service';
           opacity: 0,
           // transform: "translateX(30%)"
         }),
-        animate("0.3s 0.3s ease-in")
+        animate("0.5s ease-in")
       ]),
-      transition(":leave", [
-        style({opacity: 1, position: "absolute"}),
-        animate("0.3s 0s ease-out", style({opacity: 0}))
-      ])
+      // elemente ruckeln beim uebergang zu "orderhints"
+      // transition(":leave", [
+      //   style({opacity: 1, position: "absolute"}),
+      //   animate("0.3s ease-out", style({opacity: 0}))
+      // ])
     ])
   ]
 })

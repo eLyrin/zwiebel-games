@@ -1,32 +1,41 @@
 import { Injectable } from "@angular/core";
 import { UserService } from "../services/user.service";
-import { GameState, Hint, Step } from "@common/topten-types";
+// import { GameState, Hint } from "@common/topten-types";
+import { GameState, Step } from "../../../../common/topten-types"
 
-export interface GameStateVm extends GameState {
-  isCaptain: boolean;
-}
+// export interface GameStateVm extends GameState {
+//   isCaptain: boolean;
+// }
+
+// export class GameStateVm2 implements GameState {
+//   constructor(init?: GameStateVm2) {
+//     if (init) {
+//       Object.assign(this, init);
+//     }
+//   }
+// }
 
 @Injectable()
 export class TopTenService {
 
-  public game: GameStateVm = {
+  public game: GameState = {
     round: 1,
     unicorns: 8,
     step: "orderhints",
     captainId: "b",
-    isCaptain: true,
+    // isCaptain: true,
     secretNumber: 7,
-    players: new Map<string, string>([
-      ["a", "Manfred"],
-      ["b", "Bettina"],
-      ["c", "Hugo"],
-      ["d", "Ulla"]
-    ]),
-    hints: new Map<string, Hint>([
-      ["a", {playerId: "a", text: "Ich rette die Welt"}],
-      ["b", {playerId: "b", text: "Ldmaskd dkasmdakm"}],
-      ["c", {playerId: "c", text: "Mit einer Gummiente"}]
-    ]),
+    // players: new Map<string, string>([
+    //   ["a", "Manfred"],
+    //   ["b", "Bettina"],
+    //   ["c", "Hugo"],
+    //   ["d", "Ulla"]
+    // ]),
+    hints: {
+      "a": {playerId: "a", text: "Ich rette die Welt"},
+      "b": {playerId: "b", text: "Ldmaskd dkasmdakm"},
+      "c": {playerId: "c", text: "Mit einer Gummiente"}
+    },
     orderedHints: [
       {hintId: "b", secretNumber: 3, isCorrect: true},
       {hintId: "c", secretNumber: 5, isCorrect: false}
@@ -43,15 +52,21 @@ export class TopTenService {
     //   console.log("angular connected");
     // });
 
-    // user.socket.on("topten", (arg: GameState) => {
-    //   console.log("topten: ", arg);
-    //   this.game = {...this.game, ...arg};
-    // });
+    user.socket.emit("join", "sarah");
+    user.socket.on("patchstate", (arg) => {
+      console.log("patching: ", arg);
+      this.game = {...this.game, ...arg};
+    });
+  }
+
+  get isCaptain(): boolean {
+    return !!this.game.captainId && this.game.captainId === this.game.ownId;
   }
 
   public foo() {
-    console.log("foooooo");
-    // this.game.step = this.game.step === "lobby" ? "orderhints" : "lobby";
+    // this.user.socket.emit("foo");
+    console.log("foooooo ", this.user.socket.connected);
+
     const steps: Step[] = ["lobby", "choosecaptain", "choosetext", "givehints", "orderhints"];
     const currentIdx = steps.findIndex(x => x === this.game.step);
     this.game.step = currentIdx === steps.length - 1 ? steps[0] : steps[currentIdx + 1];

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
