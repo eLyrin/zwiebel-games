@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { TopTenService } from '../topten.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { TopTenService } from '../topten.service';
 })
 export class ToptenLobbyComponent implements OnInit {
 
-  constructor(public service: TopTenService) { }
+  name = new FormControl(null, [Validators.required]);
+
+  constructor(public game: TopTenService) { }
 
   ngOnInit(): void {
   }

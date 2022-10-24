@@ -1,34 +1,44 @@
-<button class="btn" style="position: absolute; top: 0; left: 0;" (click)="service.foo()">Foo</button>
+<button class="btn" style="position: absolute; top: 0; left: 0;" (click)="game.foo()">Foo</button>
 
-<div class="flex justify-center mb-4">
+<div *ngIf="cantJoinMessage" class="flex justify-center items-center h-full">
+  <zg-notification class="p-4 card glass">
+    <span class="p-4"><b>{{ cantJoinMessage }}</b></span>
+  </zg-notification>
+</div>
 
-  <div class="flex flex-col lg:flex-row items-center gap-4" *ngIf="game.step === 'orderhints'; else restSteps" @inOut>
-    <zg-topten-stats class="min-w-fit"></zg-topten-stats>
-    <zg-topten-card class="max-w-[44rem]">
-      <zg-notification>Die aktuelle Aufgabe</zg-notification>
-      <span class="bg-white rounded p-4">{{service.game.chosenCard === 1 ? service.game.card1 : service.game.card2}}</span>
-    </zg-topten-card>
-  </div>
-
-  <ng-template #restSteps>
-    <zg-topten-stats @inOut></zg-topten-stats>
-  </ng-template>
+<ng-container *ngIf="!cantJoinMessage">
+  <div class="flex justify-center mb-4">
   
-</div>
-
-<div class="flex justify-center" [ngSwitch]="game.step">
-  <zg-topten-lobby *ngSwitchCase="'lobby'" @inOut></zg-topten-lobby>
-
-  <div class="flex justify-center" *ngSwitchCase="'choosecaptain'" @inOut>
-    <zg-topten-card>
-      <zg-notification>Wer will Captain für diese Runde sein?</zg-notification>
-      <button class="btn btn-secondary" (click)="service.becomeCaptain()">Ich will!</button>
-    </zg-topten-card>
+    <div class="flex flex-col lg:flex-row items-center gap-4" *ngIf="game.step === 'orderhints'; else restSteps" @inOut>
+      <zg-topten-stats class="min-w-fit"></zg-topten-stats>
+      <zg-topten-card class="max-w-[44rem]">
+        <zg-notification>Die aktuelle Aufgabe</zg-notification>
+        <span class="bg-white rounded p-4">{{game.currentTask}}</span>
+      </zg-topten-card>
+    </div>
+  
+    <ng-template #restSteps>
+      <zg-topten-stats @inOut></zg-topten-stats>
+    </ng-template>
+    
   </div>
+  
+  
+  <div class="flex justify-center" [ngSwitch]="game.step" *ngIf="game.step">
+    <zg-topten-lobby *ngSwitchCase="'lobby'" @inOut></zg-topten-lobby>
+  
+    <div class="flex justify-center" *ngSwitchCase="'choosecaptain'" @inOut>
+      <zg-topten-card>
+        <zg-notification>Wer will Captain für diese Runde sein?</zg-notification>
+        <button class="btn btn-secondary" (click)="game.becomeCaptain()">Ich will!</button>
+      </zg-topten-card>
+    </div>
+  
+    <zg-topten-choosetext *ngSwitchCase="'choosetext'" @inOut></zg-topten-choosetext>
+  
+    <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut></zg-topten-giveanswer>
+  
+    <zg-topten-orderhints *ngSwitchCase="'orderhints'" @inOut></zg-topten-orderhints>
+  </div>
+</ng-container>
 
-  <zg-topten-choosetext *ngSwitchCase="'choosetext'" @inOut></zg-topten-choosetext>
-
-  <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut></zg-topten-giveanswer>
-
-  <zg-topten-orderhints *ngSwitchCase="'orderhints'" @inOut></zg-topten-orderhints>
-</div>

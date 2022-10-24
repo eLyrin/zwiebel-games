@@ -4,17 +4,26 @@
     <zg-spinner></zg-spinner>
   </zg-notification>
 
-  <table class="table table-zebra">
-    <thead>
-      <th>Name</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let player of service.game.players | keyvalue">
-        <td class="whitespace-normal text-ellipsis overflow-hidden">{{player.value}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <ng-container *ngIf="game.players | keyvalue as players">
+    <table *ngIf="players.length" class="table table-zebra">
+      <thead>
+        <th>Name</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of game.players | keyvalue">
+          <td class="whitespace-normal text-ellipsis overflow-hidden">{{player.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button *ngIf="game.joined" class="btn btn-secondary" [disabled]="players.length < 4" (click)="game.startGame()">
+      Start!
+    </button>
+  </ng-container>
 
-  <button class="btn btn-secondary" [disabled]="!service.game.players || (service.game.players | keyvalue).length < 4" (click)="service.startGame()">Start!</button>
+  <ng-container *ngIf="!game.joined">
+    <input type="text" [formControl]="name" maxlength="20" placeholder="Name" class="input min-w-[24rem]">
+    <button class="btn btn-secondary" [disabled]="!name.valid" (click)="game.join(name.value!)">Beitreten</button>
+  </ng-container>
 
 </zg-topten-card>

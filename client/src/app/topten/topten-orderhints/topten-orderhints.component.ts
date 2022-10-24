@@ -8,12 +8,8 @@ import { TopTenService } from '../topten.service';
 })
 export class ToptenOrderhintsComponent implements OnInit {
 
-  constructor(public service: TopTenService) { }
+  constructor(public game: TopTenService) { }
 
   ngOnInit(): void {
-  }
-
-  public get game() { 
-    return this.service.game;
   }
 }

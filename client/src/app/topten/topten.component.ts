@@ -1,6 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { GameState } from "@common/topten-types"
 import { TopTenService } from './topten.service';
 
 @Component({
@@ -27,12 +26,26 @@ import { TopTenService } from './topten.service';
 })
 export class ToptenComponent implements OnInit {
 
-  constructor(public service: TopTenService) { }
+  constructor(public game: TopTenService) { }
 
   ngOnInit(): void {
   }
 
-  public get game(): GameState {
-    return this.service.game;
+  get cantJoinMessage(): string | null {
+
+    return null;
+    // if (this.game.joined) {
+    //   return null;
+    // }
+
+    // if (this.game.step !== 'lobby') {
+    //   return "Das Spiel läuft bereits"
+    // }
+
+    // if (this.game.players && Object.keys(this.game.players).length > 8) {
+    //   return "Das Spiel ist bereits voll";
+    // }
+    
+    // return null;
   }
 }

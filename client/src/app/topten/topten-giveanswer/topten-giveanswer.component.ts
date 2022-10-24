@@ -11,7 +11,7 @@ export class ToptenGiveanswerComponent implements OnInit {
 
   answer = new FormControl(null, this.answerIsValid);
 
-  constructor(public service: TopTenService) { }
+  constructor(public game: TopTenService) { }
 
   ngOnInit(): void {
   }

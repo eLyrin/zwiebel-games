@@ -7,6 +7,7 @@ import { TopTenServer } from "./top-ten-server.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const port = process.env["PORT"] || 3001;
 
 const app = express();
 const httpServer = createServer(app);
@@ -29,7 +30,7 @@ const topTenServer = new TopTenServer(io);
 
 io.on("connection", (socket) => {
   console.log("connected");
-  socket.on("join", (name: string) => topTenServer.join(name, socket));
+  topTenServer.connect(socket);
 });
 
 app.use(express.static(path.join(__dirname, "/client")));
@@ -46,6 +47,6 @@ app.get("/api/flubber", (req, res) => {
 });
 
 // app.listen(process.env["PORT"] || 3001, () => console.log("foo on port: " + process.env["PORT"]));
-httpServer.listen(process.env["PORT"] || 3001);
+httpServer.listen(port);
 
-console.log(`XXXXzwiebelgames.hosting running on port ${process.env["PORT"] || 3001}`);
+console.log(`XXXXzwiebelgames.hosting running on port ${port}`);

@@ -2,13 +2,13 @@
 
   <zg-topten-card class="min-w-[34rem]">
     <zg-notification>
-      <div *ngIf="service.isCaptain">
+      <div *ngIf="game.isCaptain">
         Bringe die Hinweise in die richtige Reihenfolge. Beginnend mit
         <span class="font-bold p-1 rounded-lg bg-green-400 text-green-900">grün</span>
         bishin zu
         <span class="font-bold p-1 rounded-lg bg-red-400 text-red-900">rot</span>
       </div>
-      <ng-container *ngIf="!service.isCaptain">
+      <ng-container *ngIf="!game.isCaptain">
         <span class="grow">Der Captain bringt die Hinweise in die richtige Reihenfolge</span>
         <zg-spinner></zg-spinner>
       </ng-container>
@@ -20,7 +20,7 @@
         <th>Von</th>
       </thead>
       <tbody>
-        <tr *ngFor="let hint of game.hints | keyvalue" [ngClass]="{'cursor-pointer hover': service.isCaptain}" (click)="service.chooseHint(hint.key)">
+        <tr *ngFor="let hint of game.hints | keyvalue" [ngClass]="{'cursor-pointer hover': game.isCaptain}" (click)="game.chooseHint(hint.key)">
           <td class="whitespace-normal">{{hint.value.text}}</td>
           <td class="whitespace-normal text-ellipsis overflow-hidden max-w-[12rem]">{{ game.players?.[hint.value.playerId] }}</td>
         </tr>
