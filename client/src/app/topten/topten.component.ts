@@ -9,13 +9,30 @@ import { TopTenService } from './topten.service';
   providers: [TopTenService],
   animations: [
     trigger("inOut", [
-      transition(":enter", [
-        style({
-          opacity: 0,
-          // transform: "translateX(30%)"
-        }),
-        animate("0.5s ease-in")
+      transition(':enter', [
+        style({transform: 'translateX(-100%)'}),
+        animate('2000ms ease-in', style({transform: 'translateX(0%)'}))
       ]),
+      transition(':leave', [
+        animate('2000ms ease-in', style({transform: 'translateX(-100%)'}))
+      ])
+
+      // transition('void => *', [
+      //   style({transform: 'translateX(40px)'}),
+      //   animate(2000, style({transform: 'translateX(0)'}))
+      // ]),
+      // transition(':leave', [
+      //   animate(2000, style({transform: 'translateX(-40px)'}))
+      // ])
+
+      // transition(":enter", [
+      //   style({
+      //     opacity: 0,
+      //     transform: "translateX(30%)"
+      //   }),
+      //   animate("0.5s ease-in")
+      // ]),
+
       // elemente ruckeln beim uebergang zu "orderhints"
       // transition(":leave", [
       //   style({opacity: 1, position: "absolute"}),

@@ -17,14 +17,14 @@ export class TopTenServer {
     socket.join(this.room);
   }
 
-  public join(name: string, socket: Socket) {
-
-    // socket.on("foo", () => this.patchGame(this.state, socket));
-    console.log(`Spieler ${name} / ${socket.id} has joined the TopTenServer`);
+  private join(name: string, socket: Socket) {
 
     if (this.players.size > 8) {
       return;
     }
+
+    socket.on("start", () => this.start());
+    socket.on("becomeCaptain", () => this.becomeCaptain(socket.id));
     
     this.players.set(socket.id, {name, socket});
 
@@ -37,6 +37,14 @@ export class TopTenServer {
     this.patchUser({id: socket.id, joined: true}, socket);
   }
 
+  private start() {
+    this.patchGame({step: "choosecaptain"});
+  }
+
+  private becomeCaptain(captainId: string) {
+    this.patchGame({captainId, step: "choosetext"});
+  }
+
   private resetState(): GameState {
     return {
       round: 1,
@@ -46,7 +54,6 @@ export class TopTenServer {
   }
 
   private patchGame(state: GameState, socket?: Socket) {
-    console.log("patchgame: ", state);
     if (socket) {
       socket.emit("patchgame", state);
     } else {

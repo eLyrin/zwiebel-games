@@ -6,27 +6,12 @@
   </zg-notification>
 </div>
 
-<ng-container *ngIf="!cantJoinMessage">
-  <div class="flex justify-center mb-4">
-  
-    <div class="flex flex-col lg:flex-row items-center gap-4" *ngIf="game.step === 'orderhints'; else restSteps" @inOut>
-      <zg-topten-stats class="min-w-fit"></zg-topten-stats>
-      <zg-topten-card class="max-w-[44rem]">
-        <zg-notification>Die aktuelle Aufgabe</zg-notification>
-        <span class="bg-white rounded p-4">{{game.currentTask}}</span>
-      </zg-topten-card>
-    </div>
-  
-    <ng-template #restSteps>
-      <zg-topten-stats @inOut></zg-topten-stats>
-    </ng-template>
+<ng-container *ngIf="!cantJoinMessage" [ngSwitch]="game.step">
+  <zg-topten-stats *ngIf="game.step !== 'lobby'" class="mb-4"></zg-topten-stats>
     
-  </div>
-  
-  
-  <div class="flex justify-center" [ngSwitch]="game.step" *ngIf="game.step">
+  <!-- <div class="flex justify-center" [ngSwitch]="game.step" *ngIf="game.step"> -->
     <zg-topten-lobby *ngSwitchCase="'lobby'" @inOut></zg-topten-lobby>
-  
+    
     <div class="flex justify-center" *ngSwitchCase="'choosecaptain'" @inOut>
       <zg-topten-card>
         <zg-notification>Wer will Captain für diese Runde sein?</zg-notification>
@@ -39,6 +24,7 @@
     <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut></zg-topten-giveanswer>
   
     <zg-topten-orderhints *ngSwitchCase="'orderhints'" @inOut></zg-topten-orderhints>
-  </div>
+
+  <!-- </div> -->
 </ng-container>
 

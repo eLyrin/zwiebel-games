@@ -8,7 +8,7 @@ import { TopTenService } from '../topten.service';
 })
 export class ToptenChoosetextComponent implements OnInit {
 
-  constructor(public service: TopTenService) { }
+  constructor(public game: TopTenService) { }
 
   ngOnInit(): void {
   }

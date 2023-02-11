@@ -16,4 +16,8 @@ export class ToptenLobbyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  dontSort() {
+    return 0;
+  }
+
 }

@@ -4,13 +4,13 @@
     <zg-spinner></zg-spinner>
   </zg-notification>
 
-  <ng-container *ngIf="game.players | keyvalue as players">
+  <ng-container *ngIf="game.players | keyvalue : dontSort as players">
     <table *ngIf="players.length" class="table table-zebra">
       <thead>
         <th>Name</th>
       </thead>
       <tbody>
-        <tr *ngFor="let player of game.players | keyvalue">
+        <tr *ngFor="let player of players">
           <td class="whitespace-normal text-ellipsis overflow-hidden">{{player.value}}</td>
         </tr>
       </tbody>

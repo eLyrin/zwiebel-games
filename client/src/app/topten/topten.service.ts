@@ -5,8 +5,6 @@ import { UserState, GameState, Step, Hint, OrderedHint } from "./typings";
 @Injectable()
 export class TopTenService implements UserState, GameState {
 
-  // foooo: Foooo = {"bar": "kdmaskda"};
-
   id: string | undefined;
   joined = false;
   task1: string | undefined;
@@ -53,26 +51,19 @@ export class TopTenService implements UserState, GameState {
     // user.socket.on("connect", () => {
     //   console.log("angular connected");
     // });
-    user.socket.on("patchgame", (arg) => Object.assign(this, arg));
-    user.socket.on("patchuser", (arg) => Object.assign(this, arg));
+    // user.socket.on("patchgame", (arg) => Object.assign(this, arg));
+    // user.socket.on("patchuser", (arg) => Object.assign(this, arg));
     // this.join("bllaaa");
   }
 
   get isCaptain(): boolean {
-    return true;
-    // return !!this.captainId && this.captainId === this.id;
+    return !!this.captainId && this.captainId === this.id;
   }
 
   public foo() {
-    // this.user.socket.emit("foo");
-    console.log("foooooo ", this.user.socket.connected);
-
     const steps: Step[] = ["lobby", "choosecaptain", "choosetext", "givehints", "orderhints"];
     const currentIdx = steps.findIndex(x => x === this.step);
     this.step = currentIdx === steps.length - 1 ? steps[0] : steps[currentIdx + 1];
-
-    // this.game.players!.set("d", "Neuer Spieler Ilse");
-    // this.game.isCaptain = !this.game.isCaptain;
   }
 
   public join(name: string) {
@@ -84,11 +75,11 @@ export class TopTenService implements UserState, GameState {
   }
 
   public startGame() {
-    console.log("starting game..");
+    this.user.socket.emit("start");
   }
 
   public becomeCaptain() {
-    console.log("I want to be the captain");
+    this.user.socket.emit("becomeCaptain");
   }
 
   public giveAnswer(answer: any) {
