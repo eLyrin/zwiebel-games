@@ -27,12 +27,12 @@ export class TopTenService implements UserState, GameState {
   //   // captainId: "b",
   //   // isCaptain: true,
   //   // secretNumber: 7,
-  //   // players: new Map<string, string>([
-  //   //   ["a", "Manfred"],
-  //   //   ["b", "Bettina"],
-  //   //   ["c", "Hugo"],
-  //   //   ["d", "Ulla"]
-  //   // ]),
+  //   // players: {
+    //   a: "Manfred",
+    //   b: "Bettina",
+    //   c: "Hugo",
+    //   d: "Ulla"
+    // },
   //   // hints: {
   //   //   "a": {playerId: "a", text: "Ich rette die Welt"},
   //   //   "b": {playerId: "b", text: "Ldmaskd dkasmdakm"},
@@ -54,6 +54,13 @@ export class TopTenService implements UserState, GameState {
     // user.socket.on("patchgame", (arg) => Object.assign(this, arg));
     // user.socket.on("patchuser", (arg) => Object.assign(this, arg));
     // this.join("bllaaa");
+    this.step = "lobby";
+    this.players = {
+      a: "Manfred",
+      b: "Bettina",
+      c: "Hugo",
+      d: "Ulla"
+    };
   }
 
   get isCaptain(): boolean {

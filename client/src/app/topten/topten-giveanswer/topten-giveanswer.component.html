@@ -14,5 +14,5 @@
     </div>
   </zg-notification>
   <input type="text" maxlength="80" class="input" [formControl]="answer">
-  <button class="btn btn-secondary" [disabled]="!answer.valid" (click)="game.giveAnswer(answer.value)">Okay!</button>
+  <button [disabled]="!answer.valid" (click)="game.giveAnswer(answer.value)">Okay!</button>
 </zg-topten-card>

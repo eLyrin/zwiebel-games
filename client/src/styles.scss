@@ -13,6 +13,7 @@ html {
 body {
   height: 100%;
   overflow: hidden;
-  background-image: linear-gradient(to bottom right, hsl(296 83% 25%), hsl(200, 100%, 37%));
-  // background-image: linear-gradient(to bottom right, hsl(var(--p)), hsl(var(--s)));
+  // background-image: linear-gradient(to bottom right, hsl(296 83% 25%), hsl(200, 100%, 37%));
+  // rgba(142, 68, 173, 1)
+  background: linear-gradient(135deg, #2dd4bf 0%, #7c3aed 100%);
 }

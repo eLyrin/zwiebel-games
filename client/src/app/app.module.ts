@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToptenCardComponent } from './topten/topten-card/topten-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToptenStatsComponent } from './topten/topten-stats/topten-stats.component';
+import { ButtonDirective } from './common/button.directive';
+import { CardDirective } from './common/card.directive';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { ToptenStatsComponent } from './topten/topten-stats/topten-stats.compone
     ToptenGiveanswerComponent,
     ToptenCardComponent,
     ToptenStatsComponent,
+    ButtonDirective,
+    CardDirective,
   ],
   imports: [
     BrowserModule,

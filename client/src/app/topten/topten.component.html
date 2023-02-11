@@ -1,4 +1,4 @@
-<button class="btn" style="position: absolute; top: 0; left: 0;" (click)="game.foo()">Foo</button>
+<button style="position: absolute; top: 0; left: 0;" (click)="game.foo()">Step {{game.step}}</button>
 
 <div *ngIf="cantJoinMessage" class="flex justify-center items-center h-full">
   <zg-notification class="p-4 card glass">
@@ -15,7 +15,7 @@
     <div class="flex justify-center" *ngSwitchCase="'choosecaptain'" @inOut>
       <zg-topten-card>
         <zg-notification>Wer will Captain für diese Runde sein?</zg-notification>
-        <button class="btn btn-secondary" (click)="game.becomeCaptain()">Ich will!</button>
+        <button (click)="game.becomeCaptain()">Ich will!</button>
       </zg-topten-card>
     </div>
   

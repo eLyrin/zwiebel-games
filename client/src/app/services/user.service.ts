@@ -8,10 +8,10 @@ import { io, Socket } from "socket.io-client";
 })
 export class UserService {
 
-  public readonly socket: Socket;
+  public readonly socket!: Socket;
 
   constructor(private http: HttpClient) {
-    this.socket = io("http://localhost:3001/", {transports: ["websocket"]});
+    // this.socket = io("http://localhost:3001/", {transports: ["websocket"]});
     // this.socket = io({transports: ["websocket"]});
 
     // this.socket.on("connect_error", (err) => {
