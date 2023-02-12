@@ -1,18 +1,18 @@
-<zg-topten-card class="max-w-[44rem] mb-4">
-  <zg-notification>Die aktuelle Aufgabe</zg-notification>
-  <span class="bg-white rounded p-4">{{game.currentTask}}</span>
-</zg-topten-card>
-
-<zg-topten-card class="max-w-[44rem]">
-  <zg-notification>
-    <div>
-      Gib deine Antwort entsprechend deiner Geheimzahl zwischen&nbsp;
-      <span class="badge bg-green-400 text-green-900 font-bold border-none">1</span>
-      &nbsp;und <span class="badge bg-red-400 text-red-900 font-bold border-none">10</span>&nbsp;ein.
-      <br>
-      Deine Geheimzahl lautet: <span class="badge font-bold">{{game.secretNumber}}</span>
-    </div>
-  </zg-notification>
-  <input type="text" maxlength="80" class="input" [formControl]="answer">
+<div class="card flex flex-col gap-4 max-w-2xl">
+  <p class="p-2 rounded-md text-white text-lg font-semibold bg-gradient-to-r from-cyan-400 to-violet-500">{{game.currentTask}}</p>
+  <h2>
+    Gib deine Antwort entsprechend deiner Geheimzahl zwischen
+    <span class="py-1 px-3 bg-green-200 text-green-800 rounded-full font-bold border-4 border-green-800">1</span>
+    und
+    <span class="py-1 px-3 bg-red-200 text-red-800 rounded-full font-bold border-4 border-red-800">10</span>&nbsp;ein.
+    <br>
+    Deine Geheimzahl lautet: <span class="font-bold">{{game.secretNumber}}</span>
+    <br>
+    <p class="italic text-gray-400">
+      <fa-icon [icon]="['far', 'lightbulb']" class="text-yellow-500"></fa-icon>
+      Tipp: Es reichen auch Stichpunkte, wenn ihr euch hören könnt!
+    </p>
+  </h2>
+  <input type="text" maxlength="80" [formControl]="answer" class="p-2 border-2 rounded-md focus:outline-cyan-500">
   <button [disabled]="!answer.valid" (click)="game.giveAnswer(answer.value)">Okay!</button>
-</zg-topten-card>
+</div>

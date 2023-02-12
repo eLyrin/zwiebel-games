@@ -19,7 +19,8 @@ import { ToptenStatsComponent } from './topten/topten-stats/topten-stats.compone
 import { ButtonDirective } from './common/button.directive';
 import { CardDirective } from './common/card.directive';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppModule {
   constructor(faLib: FaIconLibrary) {
-    faLib.addIcons(faUser);
+    faLib.addIcons(faUser, faLightbulb);
   }
 }
