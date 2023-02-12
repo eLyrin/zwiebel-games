@@ -1,25 +1,25 @@
-<div class="card">
-  <zg-notification>
-    <span class="mr-4">Warte auf Mitspieler (mindestens 4 und maximal 9)</span>
+<div class="card w-[42rem]">
+  <div class="flex items-center justify-center gap-2 p-2 rounded bg-gradient-to-r from-cyan-400 to-violet-500">
+    <span class="text-white text-lg font-semibold">Warte auf Mitspieler (4 - 9)</span>
     <zg-spinner></zg-spinner>
-  </zg-notification>
+  </div>
 
   <ng-container *ngIf="game.players | keyvalue : dontSort as players">
-    <div class="flex flex-wrap gap-2 my-3">
-      <span *ngFor="let player of players" class="py-2 px-5 bg-cyan-500 text-white font-semibold rounded-full">
+    <div class="flex flex-wrap justify-center gap-2 my-3">
+      <span *ngFor="let player of players" class="py-2 px-5 bg-slate-500 text-white font-semibold rounded-full">
         <fa-icon icon="user" class="mr-2"></fa-icon>
         <span>{{player.value}}</span>
       </span>
     </div>
   
-    <button *ngIf="game.joined" [disabled]="players.length < 4" (click)="game.startGame()">
+    <button *ngIf="game.joined" [disabled]="players.length < 4" (click)="game.startGame()" class="w-full">
       Start!
     </button>
   </ng-container>
 
-  <ng-container *ngIf="!game.joined">
+  <div *ngIf="!game.joined" class="flex flex-col gap-3">
     <input type="text" [formControl]="name" maxlength="20" placeholder="Name" class="p-2 border-2 rounded-md focus:outline-cyan-500">
-    <button [disabled]="!name.valid" (click)="game.join(name.value!)" class="ml-3">Beitreten</button>
-  </ng-container>
+    <button [disabled]="!name.valid" (click)="game.join(name.value!)">Beitreten</button>
+  </div>
 
 </div>
