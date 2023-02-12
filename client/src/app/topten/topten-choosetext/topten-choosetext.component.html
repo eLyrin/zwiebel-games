@@ -1,16 +1,16 @@
-<div *ngIf="game.isCaptain" class="card flex flex-col gap-4">
+<div *ngIf="game.isCaptain" class="card flex flex-col gap-4 max-w-2xl">
   <h2 class="text-2xl font-bold text-cyan-700 text-center">Wähle eine Aufgabe</h2>
-    
-  <div class="text-white font-semibold bg-cyan-500 rounded p-2 cursor-pointer hover:bg-cyan-400">
-    djansjdna dkasmdkamskd dkasmdkasm dkmaskdma dkamdksamdk dkamskdmaskdma dkmaskdmaskdmsa dsdskmdaskmd
-  </div>
   
-  <div class="text-white font-semibold bg-cyan-500 rounded p-2 cursor-pointer hover:bg-cyan-400">
-    dkmaskdma dkamskdmakm daskm
-  </div>
+  <button>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, hic nam. Veritatis, tempora rem? Recusandae architecto nostrum in aspernatur accusamus ad vero consequatur incidunt sit, doloribus repellat non minima ratione?
+  </button>
+
+  <button>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione beatae voluptates officia dolorum minus nostrum, hic quidem a commodi iure provident voluptatum dolorem aliquid molestiae odio neque, soluta nobis incidunt.
+  </button>
 </div>
 
-<div *ngIf="!game.isCaptain" class="flex items-center p-4 gap-4 border-2 border-cyan-200">
-  <span class="text-2xl font-bold text-white">Der Captain wählt einen Text</span>
-  <zg-spinner class="mt-2"></zg-spinner>
+<div *ngIf="!game.isCaptain" class="flex gap-2 p-4 shadow-md rounded-sm bg-gradient-to-r from-cyan-400 to-violet-500">
+  <h2 class="text-white text-lg font-semibold flex">Der Captain wählt einen Text</h2>
+  <zg-spinner></zg-spinner>
 </div>

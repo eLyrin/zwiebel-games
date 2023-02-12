@@ -7,24 +7,22 @@
 </div> -->
 
 <ng-container *ngIf="!cantJoinMessage" [ngSwitch]="game.step">
-  <zg-topten-stats *ngIf="game.step !== 'lobby'" class="mb-4"></zg-topten-stats>
+  <!-- <zg-topten-stats *ngIf="game.step !== 'lobby'" class="mb-4"></zg-topten-stats> -->
     
   <zg-topten-lobby *ngSwitchCase="'lobby'" class="h-full flex justify-center items-center"></zg-topten-lobby>
-
-  <!-- <div *ngSwitchCase="'lobby'" class="h-full flex justify-center items-center border-4 border-red-600 basis-2">
-    <div class="bg-white m-4 grow">Hallo</div>
-  </div> -->
   
-  <div *ngSwitchCase="'choosecaptain'" @inOut class="card flex flex-col">
-    <h2 class="mb-4 text-2xl font-bold text-cyan-700 text-center">Wer will Captain für diese Runde sein?</h2>
-    <button (click)="game.becomeCaptain()">Ich will!</button>
+  <div *ngSwitchCase="'choosecaptain'" class="h-full flex justify-center items-center">
+    <div class="card flex flex-col max-w-2xl">
+      <h2 class="mb-4 text-2xl font-bold text-cyan-700 text-center">Wer will Captain für diese Runde sein?</h2>
+      <button (click)="game.becomeCaptain()">Ich will!</button>
+    </div>
   </div>
 
-  <zg-topten-choosetext *ngSwitchCase="'choosetext'"></zg-topten-choosetext>
+  <zg-topten-choosetext *ngSwitchCase="'choosetext'" class="h-full flex justify-center items-center"></zg-topten-choosetext>
 
-  <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut></zg-topten-giveanswer>
+  <zg-topten-giveanswer *ngSwitchCase="'givehints'"></zg-topten-giveanswer>
 
-  <zg-topten-orderhints *ngSwitchCase="'orderhints'" @inOut></zg-topten-orderhints>
+  <zg-topten-orderhints *ngSwitchCase="'orderhints'"></zg-topten-orderhints>
 
 </ng-container>
 

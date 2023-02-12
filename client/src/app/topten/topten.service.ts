@@ -61,8 +61,8 @@ export class TopTenService implements UserState, GameState {
       d: "Ulla"
     };
     this.id = "c";
-    this.captainId = "a";
-    this.step = "lobby";
+    this.captainId = "c";
+    this.step = "choosetext";
   }
 
   get isCaptain(): boolean {
