@@ -54,13 +54,15 @@ export class TopTenService implements UserState, GameState {
     // user.socket.on("patchgame", (arg) => Object.assign(this, arg));
     // user.socket.on("patchuser", (arg) => Object.assign(this, arg));
     // this.join("bllaaa");
-    this.step = "lobby";
     this.players = {
       a: "Manfred",
       b: "Bettina",
       c: "Hugo",
       d: "Ulla"
     };
+    this.id = "c";
+    this.captainId = "a";
+    this.step = "lobby";
   }
 
   get isCaptain(): boolean {

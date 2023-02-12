@@ -12,14 +12,12 @@
   <!-- <div class="flex justify-center" [ngSwitch]="game.step" *ngIf="game.step"> -->
     <zg-topten-lobby *ngSwitchCase="'lobby'" @inOut></zg-topten-lobby>
     
-    <div class="flex justify-center" *ngSwitchCase="'choosecaptain'" @inOut>
-      <zg-topten-card>
-        <zg-notification>Wer will Captain für diese Runde sein?</zg-notification>
-        <button (click)="game.becomeCaptain()">Ich will!</button>
-      </zg-topten-card>
+    <div *ngSwitchCase="'choosecaptain'" @inOut class="card flex flex-col">
+      <h2 class="mb-4 text-2xl font-bold text-cyan-700 text-center">Wer will Captain für diese Runde sein?</h2>
+      <button (click)="game.becomeCaptain()">Ich will!</button>
     </div>
   
-    <zg-topten-choosetext *ngSwitchCase="'choosetext'" @inOut></zg-topten-choosetext>
+    <zg-topten-choosetext *ngSwitchCase="'choosetext'"></zg-topten-choosetext>
   
     <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut></zg-topten-giveanswer>
   

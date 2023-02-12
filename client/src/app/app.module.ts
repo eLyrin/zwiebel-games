@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToptenStatsComponent } from './topten/topten-stats/topten-stats.component';
 import { ButtonDirective } from './common/button.directive';
 import { CardDirective } from './common/card.directive';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -41,9 +43,14 @@ import { CardDirective } from './common/card.directive';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(faLib: FaIconLibrary) {
+    faLib.addIcons(faUser);
+  }
+}

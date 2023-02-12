@@ -7,7 +7,8 @@
   <ng-container *ngIf="game.players | keyvalue : dontSort as players">
     <div class="flex flex-wrap gap-2 my-3">
       <span *ngFor="let player of players" class="py-2 px-5 bg-cyan-500 text-white font-semibold rounded-full">
-        {{player.value}}
+        <fa-icon icon="user" class="mr-2"></fa-icon>
+        <span>{{player.value}}</span>
       </span>
     </div>
   
