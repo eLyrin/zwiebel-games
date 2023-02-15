@@ -19,7 +19,7 @@ import { ToptenStatsComponent } from './topten/topten-stats/topten-stats.compone
 import { ButtonDirective } from './common/button.directive';
 import { CardDirective } from './common/card.directive';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHouse, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({

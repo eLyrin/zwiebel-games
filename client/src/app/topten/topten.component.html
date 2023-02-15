@@ -1,28 +1,36 @@
-<button style="position: absolute; top: 0; left: 0;" (click)="game.foo()">Step {{game.step}}</button>
+<button style="position: absolute; top: 0; left: 0; z-index: 9999;" (click)="game.foo()">Step {{game.step}}</button>
 
-<!-- <div *ngIf="cantJoinMessage" class="flex justify-center items-center h-full">
+<div *ngIf="cantJoinMessage" class="flex justify-center items-center h-full">
   <zg-notification class="p-4 card glass">
     <span class="p-4"><b>{{ cantJoinMessage }}</b></span>
   </zg-notification>
-</div> -->
+</div>
 
-<ng-container *ngIf="!cantJoinMessage" [ngSwitch]="game.step">
+<!-- class="h-full flex justify-center items-center border-2 border-red-600" -->
+
+<div *ngIf="!cantJoinMessage" [ngSwitch]="game.step" class="relative grid place-items-center h-full">
   <!-- <zg-topten-stats *ngIf="game.step !== 'lobby'" class="mb-4"></zg-topten-stats> -->
+
+<!-- <button (click)="toggle = !toggle;">toggle</button>
+<div class="relative grid place-items-center border-blue-800 border-2 h-96">
+  <div *ngIf="toggle" @inOut class="absolute inline-block p-8 bg-red-600">True</div>
+  <div *ngIf="!toggle" @inOut class="absolute inline-block p-8 bg-green-600">False</div>
+</div> -->
     
-  <zg-topten-lobby *ngSwitchCase="'lobby'" class="h-full flex justify-center items-center"></zg-topten-lobby>
+  <zg-topten-lobby *ngSwitchCase="'lobby'" @inOut class="absolute"></zg-topten-lobby>
   
-  <div *ngSwitchCase="'choosecaptain'" class="h-full flex justify-center items-center">
+  <div *ngSwitchCase="'choosecaptain'" @inOut class="absolute">
     <div class="card flex flex-col max-w-2xl">
       <h2 class="mb-4 text-2xl font-bold text-cyan-700 text-center">Wer will Captain für diese Runde sein?</h2>
       <button (click)="game.becomeCaptain()">Ich will!</button>
     </div>
   </div>
 
-  <zg-topten-choosetext *ngSwitchCase="'choosetext'" class="h-full flex justify-center items-center"></zg-topten-choosetext>
+  <zg-topten-choosetext *ngSwitchCase="'choosetext'" @inOut class="absolute"></zg-topten-choosetext>
 
-  <zg-topten-giveanswer *ngSwitchCase="'givehints'" class="h-full flex justify-center items-center"></zg-topten-giveanswer>
+  <zg-topten-giveanswer *ngSwitchCase="'givehints'" @inOut class="absolute"></zg-topten-giveanswer>
 
-  <zg-topten-orderhints *ngSwitchCase="'orderhints'"></zg-topten-orderhints>
+  <zg-topten-orderhints *ngSwitchCase="'orderhints'" @inOut class="absolute"></zg-topten-orderhints>
 
-</ng-container>
+</div>
 

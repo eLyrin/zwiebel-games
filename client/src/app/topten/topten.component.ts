@@ -2,43 +2,36 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { TopTenService } from './topten.service';
 
+// export const slideInRight = animation([
+//   animate('2.5s ease-in', keyframes([
+//     style({ transform: 'translateX(100%)', offset: 0 }),
+//     style({ transform: 'translateX(0%)', offset: 1 })
+//   ]))
+// ]);
+
+// export const slideOutLeft = animation([
+//   animate('2.5s ease-out', keyframes([
+//     style({ transform: 'translateX(0%)', offset: 0 }),
+//     style({ transform: 'translateX(-100%)', offset: 1 })
+//   ]))
+// ]);
+
 @Component({
   selector: 'zg-topten',
   templateUrl: './topten.component.html',
   styleUrls: ['./topten.component.scss'],
   providers: [TopTenService],
   animations: [
-    trigger("inOut", [
-      transition(':enter', [
-        style({transform: 'translateX(-100%)'}),
-        animate('2000ms ease-in', style({transform: 'translateX(0%)'}))
-      ]),
+    trigger('inOut', [
       transition(':leave', [
-        animate('2000ms ease-in', style({transform: 'translateX(-100%)'}))
+        animate('900ms ease-in', style({ transform: 'translateX(-50vw)'}))
+      ]),
+      transition(':enter', [
+        style({  transform: 'translateX(50vw)' }),
+        animate('900ms ease-in', style({ transform: 'translateX(0)' }))
       ])
-
-      // transition('void => *', [
-      //   style({transform: 'translateX(40px)'}),
-      //   animate(2000, style({transform: 'translateX(0)'}))
-      // ]),
-      // transition(':leave', [
-      //   animate(2000, style({transform: 'translateX(-40px)'}))
-      // ])
-
-      // transition(":enter", [
-      //   style({
-      //     opacity: 0,
-      //     transform: "translateX(30%)"
-      //   }),
-      //   animate("0.5s ease-in")
-      // ]),
-
-      // elemente ruckeln beim uebergang zu "orderhints"
-      // transition(":leave", [
-      //   style({opacity: 1, position: "absolute"}),
-      //   animate("0.3s ease-out", style({opacity: 0}))
-      // ])
     ])
+
   ]
 })
 export class ToptenComponent implements OnInit {
@@ -46,7 +39,12 @@ export class ToptenComponent implements OnInit {
   constructor(public game: TopTenService) { }
 
   ngOnInit(): void {
+    
   }
+
+  toggle = true;
+
+
 
   get cantJoinMessage(): string | null {
 

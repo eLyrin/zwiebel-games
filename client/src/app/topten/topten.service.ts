@@ -62,7 +62,7 @@ export class TopTenService implements UserState, GameState {
     };
     this.id = "c";
     this.captainId = "c";
-    this.step = "givehints";
+    this.step = "lobby";
     this.currentTask = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque harum laboriosam sequi itaque tenetur quibusdam recusandae aspernatur, nisi explicabo? Beatae repellendus aliquam quos quo unde placeat vero quas quaerat amet!";
     this.secretNumber = 7;
   }

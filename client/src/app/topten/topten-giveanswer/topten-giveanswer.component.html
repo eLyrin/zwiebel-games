@@ -8,10 +8,8 @@
     <br>
     Deine Geheimzahl lautet: <span class="font-bold">{{game.secretNumber}}</span>
     <br>
-    <p class="italic text-gray-400">
-      <fa-icon [icon]="['far', 'lightbulb']" class="text-yellow-500"></fa-icon>
-      Tipp: Es reichen auch Stichpunkte, wenn ihr euch hören könnt!
-    </p>
+    <fa-icon [icon]="['far', 'lightbulb']" class="text-yellow-500"></fa-icon>
+    <span class="italic text-gray-400">Tipp: Es reichen auch Stichpunkte, wenn ihr euch hören könnt!</span>
   </h2>
   <input type="text" maxlength="80" [formControl]="answer" class="p-2 border-2 rounded-md focus:outline-cyan-500">
   <button [disabled]="!answer.valid" (click)="game.giveAnswer(answer.value)">Okay!</button>
