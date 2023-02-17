@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'zg-login',
@@ -8,7 +7,7 @@ import { UserService } from '../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private user: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

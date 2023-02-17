@@ -19,9 +19,9 @@
     "target": "es2020",
     "module": "es2020",
     "esModuleInterop": true,
-    "paths": {
-      "@common/*": ["../common/*"]
-    }
+    // "paths": {
+    //   "@common/*": ["../common/*"]
+    // }
   },
   "include": [
     "src/**/*"

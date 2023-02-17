@@ -1,7 +1,5 @@
 import { Server, Socket } from 'socket.io';
-import { GameState as gs, UserState, Hint, OrderedHint } from '../../common/typings'
-
-type GameState = Partial<gs>;
+import { GameState, UserState, Hint, OrderedHint } from 'typings';
 
 export class TopTenServer {
 
@@ -53,7 +51,7 @@ export class TopTenServer {
     }
   }
 
-  private patchGame(state: GameState, socket?: Socket) {
+  private patchGame(state: Partial<GameState>, socket?: Socket) {
     if (socket) {
       socket.emit("patchgame", state);
     } else {

@@ -1,4 +1,4 @@
-<div class="card w-[42rem]">
+<div class="card w-[42rem] flex flex-col gap-3">
   <div class="flex items-center justify-center gap-2 p-2 rounded bg-gradient-to-r from-cyan-400 to-violet-500">
     <span class="text-white text-lg font-semibold">Warte auf Mitspieler (4 - 9)</span>
     <zg-spinner></zg-spinner>
@@ -17,9 +17,14 @@
     </button>
   </ng-container>
 
-  <div *ngIf="!game.joined" class="flex flex-col gap-3">
+  <!-- <div *ngIf="!game.joined" class="flex flex-col gap-3">
     <input type="text" [formControl]="name" maxlength="20" placeholder="Name" class="p-2 border-2 rounded-md focus:outline-cyan-500">
     <button [disabled]="!name.valid" (click)="game.join(name.value!)">Beitreten</button>
-  </div>
+  </div> -->
+
+  <ng-container *ngIf="!game.joined">
+    <input type="text" [formControl]="name" maxlength="20" placeholder="Name" class="p-2 border-2 rounded-md focus:outline-cyan-500">
+    <button [disabled]="!name.valid" (click)="game.join(name.value!)">Beitreten</button>
+  </ng-container>
 
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserService } from "../services/user.service";
+import { io } from "socket.io-client";
 import { UserState, GameState, Step, Hint, OrderedHint } from "./typings";
 
 @Injectable()
@@ -20,51 +20,26 @@ export class TopTenService implements UserState, GameState {
   orderedHints: OrderedHint[] | undefined;
   currentTask: string | undefined;
 
-  // public game: GameState = {
-  //   round: 1,
-  //   unicorns: 8,
-  //   step: "lobby",
-  //   // captainId: "b",
-  //   // isCaptain: true,
-  //   // secretNumber: 7,
-  //   // players: {
+  private socket = io("http://localhost:3001/", {transports: ["websocket"]});
+
+  constructor() {
+    this.socket.on("connect", () => {
+      console.log("angular connected");
+    });
+    this.socket.on("patchgame", (arg) => Object.assign(this, arg));
+    this.socket.on("patchuser", (arg) => Object.assign(this, arg));
+    // this.join("bllaaa");
+    // this.players = {
     //   a: "Manfred",
     //   b: "Bettina",
     //   c: "Hugo",
     //   d: "Ulla"
-    // },
-  //   // hints: {
-  //   //   "a": {playerId: "a", text: "Ich rette die Welt"},
-  //   //   "b": {playerId: "b", text: "Ldmaskd dkasmdakm"},
-  //   //   "c": {playerId: "c", text: "Mit einer Gummiente"}
-  //   // },
-  //   // orderedHints: [
-  //   //   {hintId: "b", secretNumber: 3, isCorrect: true},
-  //   //   {hintId: "c", secretNumber: 5, isCorrect: false}
-  //   // ],
-  //   // card1: "Karte 1 kdamskdma dkamskdmaskmdaskmda Aufgabe daskmdkam dkasmdkasmd dkamsdksamdkm dkasmdksamdka dkasmdkamda dkasmdkasmd",
-  //   // card2: "zwei kdmaks einde ende",
-  //   // chosenCard: 1
-  // };
-
-  constructor(private user: UserService) {
-    // user.socket.on("connect", () => {
-    //   console.log("angular connected");
-    // });
-    // user.socket.on("patchgame", (arg) => Object.assign(this, arg));
-    // user.socket.on("patchuser", (arg) => Object.assign(this, arg));
-    // this.join("bllaaa");
-    this.players = {
-      a: "Manfred",
-      b: "Bettina",
-      c: "Hugo",
-      d: "Ulla"
-    };
-    this.id = "c";
-    this.captainId = "c";
-    this.step = "lobby";
-    this.currentTask = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque harum laboriosam sequi itaque tenetur quibusdam recusandae aspernatur, nisi explicabo? Beatae repellendus aliquam quos quo unde placeat vero quas quaerat amet!";
-    this.secretNumber = 7;
+    // };
+    // this.id = "c";
+    // this.captainId = "c";
+    // this.step = "lobby";
+    // this.currentTask = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque harum laboriosam sequi itaque tenetur quibusdam recusandae aspernatur, nisi explicabo? Beatae repellendus aliquam quos quo unde placeat vero quas quaerat amet!";
+    // this.secretNumber = 7;
   }
 
   get isCaptain(): boolean {
@@ -78,7 +53,7 @@ export class TopTenService implements UserState, GameState {
   }
 
   public join(name: string) {
-    this.user.socket.emit("join", name);
+    this.socket.emit("join", name);
   }
 
   public chooseHint(id: string) {
@@ -86,11 +61,11 @@ export class TopTenService implements UserState, GameState {
   }
 
   public startGame() {
-    this.user.socket.emit("start");
+    this.socket.emit("start");
   }
 
   public becomeCaptain() {
-    this.user.socket.emit("becomeCaptain");
+    this.socket.emit("becomeCaptain");
   }
 
   public giveAnswer(answer: any) {
